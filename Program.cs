@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            humanvshuman s1 = new humanvshuman();
+            humanvscpu s1 = new humanvscpu();
             s1.play();
 
 
@@ -230,7 +230,7 @@ namespace ConsoleApp1
                                 ground[j, k] = player1;
                         }
                     }
-                    //need check function
+                    
                 }
                 else
                 {
@@ -246,8 +246,29 @@ namespace ConsoleApp1
                         {
                             if (ground[j, k] != player1 && choosepos == ground[j, k])
                                 ground[j, k] = cpu;
+                            else if(ground[j,k] == player1)
+                            {
+
+                            }
                         }
                     }
+                }
+                if (i >= 4 && i % 2 == 0)
+                {
+                    turn = true;
+                    checking_for_win();
+                }
+                else if (i >= 4 && i % 2 == 1)
+                {
+                    turn = false;
+                    checking_for_win();
+                }
+                if (flag)
+                    break;
+                else if (flag == false && i == 8)
+                {
+                    Console.WriteLine("the game is equal no one wins!!!!");
+                    break;
                 }
             }
 
@@ -303,7 +324,7 @@ namespace ConsoleApp1
                     {
                         if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i, j + 1] == 'X' && ground[i, j + 2] == 'X')
                         {
-                            Console.WriteLine("player2 wins !!!!");
+                            Console.WriteLine("cpu wins !!!!");
                             flag = true;
                             break;
 
@@ -311,21 +332,21 @@ namespace ConsoleApp1
 
                         else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i + 1, j] == 'X' && ground[i + 2, j] == 'X')
                         {
-                            Console.WriteLine("player2 wins!!!");
+                            Console.WriteLine("cpu wins!!!");
                             flag = true;
                             break;
                         }
 
                         else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i + 1, j + 1] == 'X' && ground[i + 2, j + 2] == 'X')
                         {
-                            Console.WriteLine("player2 wins !!!!");
+                            Console.WriteLine("cpu wins !!!!");
                             flag = true;
                             break;
                         }
 
                         else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j + 2] == 'X' && ground[i + 1, j + 1] == 'X' && ground[i + 2, j] == 'X')
                         {
-                            Console.WriteLine("player2 wins!!!!");
+                            Console.WriteLine("cpu wins!!!!");
                             flag = true;
                             break;
                         }
