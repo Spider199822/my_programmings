@@ -10,355 +10,356 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            humanvscpu s1 = new humanvscpu();
-            s1.play();
+            bool Is_End = true;
 
-
-
-
-
-
-        }
-
-    }
-    internal class humanvshuman
-    {
-        //h1vsh2 the we have turn and h1 is false and h2 true then choose after 4 turn each player needs to check the state so call that function 
-
-        
-        char[,] ground = new char[,] { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
-        char player1 = 'O';
-        char player2 = 'X';
-        bool turn;
-        bool flag;
-        public humanvshuman()
-        {
-            
-        }
-        public void show_ground()
-        {
-            for (int k = 0; k < 3; k++)
+            while (Is_End)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    Console.Write(ground[k, j]);
-                    Console.Write(" ");
-                }
+                Console.WriteLine("\t\tWelcome to Tic_Tac_Toe Game");
                 Console.WriteLine();
-            }
-        }
-        public void play()
-        {
-            for(int i=0;i<9;i++)
-            {
-                if(i%2==0)
+                Console.WriteLine();
+                Console.WriteLine("\t\t1.Single Player");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("\t\t2.Two Player");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("\t\t3.Exit");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Please enter the number of kind the game, you want to play");
+                int MenuStartChoose = int.Parse(Console.ReadLine());
+                if (MenuStartChoose == 1)
                 {
-                    show_ground();
-                    Console.WriteLine("it's player1 turn");
-                    Console.WriteLine("please choose a positon from the ground of the play");
-                    char choosepos = char.Parse(Console.ReadLine());
-                    for(int j = 0; j<3;j++)
-                    {
-                        for(int k = 0; k<3;k++)
-                        {
-                            if (ground[j, k] != player2 && choosepos == ground[j, k])
-                                ground[j, k] = player1;
-                        }
-                    }
+                    Console.Clear();
+                    HumanVSCPU c1 = new HumanVSCPU();
+                    c1.Play();
+                    
+                }
+                else if (MenuStartChoose == 2)
+                {
+                    Console.Clear();
+                    HumanVSHuman h1 = new HumanVSHuman();
+                    h1.Play();
+                }
+                else if (MenuStartChoose == 3)
+                {
+                    break;
                 }
                 else
                 {
-                    show_ground();
-                    Console.WriteLine("it's player2 turn");
-                    Console.WriteLine("please choose a positon from the ground of the play");
-                    char choosepos = char.Parse(Console.ReadLine());
-                    for (int j = 0; j < 3; j++)
-                    {
-                        for (int k = 0; k < 3; k++)
-                        {
-                            if (ground[j, k] != player1 && choosepos == ground[j, k])
-                                ground[j, k] = player2;
-                        }
-                    }
-                    
-                }
-                if (i >= 4 && i%2 == 0)
-                {
-                    turn = true;
-                    checking_for_win();
-                }
-                else if(i>=4 && i%2 == 1)
-                {
-                    turn = false;
-                    checking_for_win();
-                }
-                if (flag)
-                    break;
-                else if(flag == false && i == 8)
-                {
-                    Console.WriteLine("the game is equal no one wins!!!!");
-                    break;
+                    Console.Clear();
+                    continue;
                 }
             }
-            
-
-        }
-        public void checking_for_win()
-        {
-            if (turn)
-
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'O' && ground[i, j + 1] == 'O' && ground[i, j + 2] == 'O')
-                        {
-                            Console.WriteLine("player1 wins !!!!");
-                            flag = true;
-                            break;
-
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'O' && ground[i + 1, j] == 'O' && ground[i + 2, j] == 'O')
-                        {
-                            Console.WriteLine("player1 wins!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'O' && ground[i + 1, j + 1] == 'O' && ground[i + 2, j + 2] == 'O')
-                        {
-                            Console.WriteLine("player1 wins !!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j + 2] == 'O' && ground[i + 1, j + 1] == 'O' && ground[i + 2, j] == 'O')
-                        {
-                            Console.WriteLine("player1 wins!!!!");
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag)
-                        break;
-
-                }
-            }
-            else if(!turn)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i, j + 1] == 'X' && ground[i, j + 2] == 'X')
-                        {
-                            Console.WriteLine("player2 wins !!!!");
-                            flag = true;
-                            break;
-
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i + 1, j] == 'X' && ground[i + 2, j] == 'X')
-                        {
-                            Console.WriteLine("player2 wins!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i + 1, j + 1] == 'X' && ground[i + 2, j + 2] == 'X')
-                        {
-                            Console.WriteLine("player2 wins !!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j + 2] == 'X' && ground[i + 1, j + 1] == 'X' && ground[i + 2, j] == 'X')
-                        {
-                            Console.WriteLine("player2 wins!!!!");
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag)
-                        break;
-
-                }
-            }
-            
         }
     }
-
-
-    internal class humanvscpu
+    internal class HumanVSHuman
     {
-
-
+        bool CheckedRow, CheckedCol, CheckedMainDiameter, CheckedMinorDiameter;
+        bool Right_Choice;
+        const int n = 3;
         char[,] ground = new char[,] { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
-        char player1 = 'O';
-        char cpu = 'X';
-        bool flag;
-        bool turn;
-        public void show_ground()
+        char Playersign;
+        public HumanVSHuman()
         {
-            for (int k = 0; k < 3; k++)
+
+        }
+        public void Show_Ground()
+        {
+            for (int RowGround = 0; RowGround < n; RowGround++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int ColGround = 0; ColGround < n; ColGround++)
                 {
-                    Console.Write(ground[k, j]);
-                    Console.Write(" ");
+                    if (ground[RowGround, ColGround] == 'X' || ground[RowGround, ColGround] == 'O')
+                        Console.Write(ground[RowGround, ColGround]);
+                    else
+                        Console.Write("_");
+                    Console.Write('\t');
                 }
-                Console.WriteLine();
+                Console.WriteLine('\t');
             }
         }
-        public void play()
+        public void Play()
         {
-            for (int i = 0; i < 9; i++)
+            for (int Turn = 0; Turn < n * n; Turn++)
             {
-                if (i % 2 == 0)
+                if (Turn % 2 == 0)
                 {
-                    show_ground();
-                    Console.WriteLine("it's player1 turn");
-                    Console.WriteLine("please choose a positon from the ground of the play");
-                    char choosepos = char.Parse(Console.ReadLine());
-                    for (int j = 0; j < 3; j++)
-                    {
-                        for (int k = 0; k < 3; k++)
-                        {
-                            if (ground[j, k] != cpu && choosepos == ground[j, k])
-                                ground[j, k] = player1;
-                        }
-                    }
-                    
+                    Playersign = 'O';
+                    Show_Ground();
+                    Choose(Turn, Playersign, 'X');
                 }
                 else
                 {
-                    show_ground();
-                    Console.WriteLine("it's computer's turn");
-                    Random rand = new Random();
-                    string choose = rand.Next(1, 9).ToString();
-                    char choosepos = char.Parse(choose);
+                    Playersign = 'X';
+                    Show_Ground();
+                    Choose(Turn, Playersign, 'O');
 
-                    for (int j = 0; j < 3; j++)
-                    {
-                        for (int k = 0; k < 3; k++)
-                        {
-                            if (ground[j, k] != player1 && choosepos == ground[j, k])
-                                ground[j, k] = cpu;
-                            else if(ground[j,k] == player1)
-                            {
-
-                            }
-                        }
-                    }
-                }
-                if (i >= 4 && i % 2 == 0)
-                {
-                    turn = true;
-                    checking_for_win();
-                }
-                else if (i >= 4 && i % 2 == 1)
-                {
-                    turn = false;
-                    checking_for_win();
-                }
-                if (flag)
-                    break;
-                else if (flag == false && i == 8)
-                {
-                    Console.WriteLine("the game is equal no one wins!!!!");
-                    break;
                 }
             }
-
         }
-        public void checking_for_win()
+        public void Choose(int PlayerLoop, char CurrentPlayer, char NextPlayer)
         {
-            if (turn)
-
+            
+            Right_Choice = false;
+            Console.Clear();
+            Console.WriteLine($"it's player '{CurrentPlayer}' turn");
+            Console.WriteLine("please choose a positon from the ground of the play");
+            Show_Ground();
+            char choosepos = char.Parse(Console.ReadLine());
+            for (int RowGround = 0; RowGround < n; RowGround++)
             {
-                for (int i = 0; i < 3; i++)
+                for (int ColGround = 0; ColGround < n; ColGround++)
                 {
-                    for (int j = 0; j < 3; j++)
+                    if (ground[RowGround, ColGround] != NextPlayer && choosepos == ground[RowGround, ColGround])
                     {
-                        if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'O' && ground[i, j + 1] == 'O' && ground[i, j + 2] == 'O')
-                        {
-                            Console.WriteLine("player1 wins !!!!");
-                            flag = true;
-                            break;
-
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'O' && ground[i + 1, j] == 'O' && ground[i + 2, j] == 'O')
-                        {
-                            Console.WriteLine("player1 wins!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'O' && ground[i + 1, j + 1] == 'O' && ground[i + 2, j + 2] == 'O')
-                        {
-                            Console.WriteLine("player1 wins !!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j + 2] == 'O' && ground[i + 1, j + 1] == 'O' && ground[i + 2, j] == 'O')
-                        {
-                            Console.WriteLine("player1 wins!!!!");
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag)
+                        ground[RowGround, ColGround] = CurrentPlayer;
+                        Right_Choice = true;
                         break;
-
+                    }
+                }
+                if (Right_Choice == true)
+                    break;
+            }
+            if (!Right_Choice)
+                Choose(PlayerLoop, CurrentPlayer, NextPlayer);
+            if (PlayerLoop >= 4)
+            {
+                Console.Clear();
+                Show_Ground();
+                CheckedRow = CheckingRow(Playersign);
+                if (CheckedRow == true)
+                {
+                    Win_Message();
+                }
+                CheckedCol = CheckingCol(Playersign);
+                if (CheckedRow == false && CheckedCol == true)
+                {
+                    Win_Message();
+                }
+                CheckedMainDiameter = CheckingMainDiameter(Playersign);
+                if (CheckedRow == false && CheckedCol == false && CheckedMainDiameter == true)
+                {
+                    Win_Message();
+                }
+                CheckedMinorDiameter = CheckingMinorDiameter(Playersign);
+                if (CheckedRow == false && CheckedCol == false && CheckedMainDiameter == false && CheckedMinorDiameter == true)
+                {
+                    Win_Message();
+                }
+                if (PlayerLoop == 8 && CheckedRow == false && CheckedCol == false && CheckedMainDiameter == false && CheckedMinorDiameter == false)
+                {
+                    Console.WriteLine("-------------------------------------------");
+                    Console.WriteLine("The Result of this game is Equal");
+                    Console.WriteLine("to continue please click any key");
+                    Console.ReadKey();
                 }
             }
-            else if (!turn)
+        }
+        public void Win_Message()
+        {
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine($"player '{Playersign}' wins !!!!");
+            Console.WriteLine("to continue please click any key");
+            Console.ReadKey();
+        }
+        public bool CheckingRow(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            while (RowGround <= 2)
             {
-                for (int i = 0; i < 3; i++)
+                if (ground[RowGround, ColGround] == Playersign && ground[RowGround, ColGround + 1] == Playersign && ground[RowGround, ColGround + 2] == Playersign)
                 {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i, j + 1] == 'X' && ground[i, j + 2] == 'X')
-                        {
-                            Console.WriteLine("cpu wins !!!!");
-                            flag = true;
-                            break;
-
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i + 1, j] == 'X' && ground[i + 2, j] == 'X')
-                        {
-                            Console.WriteLine("cpu wins!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j] == 'X' && ground[i + 1, j + 1] == 'X' && ground[i + 2, j + 2] == 'X')
-                        {
-                            Console.WriteLine("cpu wins !!!!");
-                            flag = true;
-                            break;
-                        }
-
-                        else if (i >= 0 && i <= 2 && j >= 0 && j <= 2 && i + 1 >= 0 && i + 1 <= 2 && j + 1 >= 0 && j + 1 <= 2 && i + 2 >= 0 && i + 2 <= 2 && j + 2 >= 0 && j + 2 <= 2 && ground[i, j + 2] == 'X' && ground[i + 1, j + 1] == 'X' && ground[i + 2, j] == 'X')
-                        {
-                            Console.WriteLine("cpu wins!!!!");
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag)
-                        break;
-
+                    return true;
+                }
+                RowGround++;
+            }
+            return false;
+        }
+        public bool CheckingCol(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            while (ColGround <= 2)
+            {
+                if (ground[RowGround, ColGround] == Playersign && ground[RowGround + 1, ColGround] == Playersign && ground[RowGround + 2, ColGround] == Playersign)
+                    return true;
+                ColGround++;
+            }
+            return false;
+        }
+        public bool CheckingMainDiameter(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            if (ground[RowGround, ColGround] == Playersign && ground[RowGround + 1, ColGround + 1] == Playersign && ground[RowGround + 2, ColGround + 2] == Playersign)
+                return true;
+            return false;
+        }
+        public bool CheckingMinorDiameter(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            if (ground[RowGround, ColGround + 2] == Playersign && ground[RowGround + 1, ColGround + 1] == Playersign && ground[RowGround + 2, ColGround] == Playersign)
+                return true;
+            return false;
+        }
+    }
+    internal class HumanVSCPU
+    {
+        bool CheckedRow, CheckedCol, CheckedMainDiameter, CheckedMinorDiameter;
+        char choosepos;
+        char Playersign;
+        bool Right_Choice;
+        const int n = 3;
+        char[,] ground = new char[,] { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+        public void Show_Ground()
+        {
+            for (int RowGround = 0; RowGround < n; RowGround++)
+            {
+                for (int ColGround = 0; ColGround < n; ColGround++)
+                {
+                    if (ground[RowGround, ColGround] == 'X' || ground[RowGround, ColGround] == 'O')
+                        Console.Write(ground[RowGround, ColGround]);
+                    else
+                        Console.Write("_");
+                    Console.Write('\t');
+                }
+                Console.WriteLine('\t');
+            }
+        }
+        public void Play()
+        {
+            for (int Turn = 0; Turn < 9; Turn++)
+            {
+                if (Turn % 2 == 0)
+                {
+                    Playersign = 'O';
+                    Show_Ground();
+                    Choose(Turn, Playersign, 'X');
+                }
+                else
+                {
+                    Playersign = 'X';
+                    Show_Ground();
+                    Choose(Turn, Playersign, 'O');
                 }
             }
-
+        }
+        public void Choose(int PlayerLoop, char CurrentPlayer, char NextPlayer)
+        {
+            Console.Clear();
+            Right_Choice = false;
+            if(PlayerLoop%2 == 0)
+            {
+                Console.WriteLine($"it's player '{CurrentPlayer}' turn");
+                Console.WriteLine("please choose a positon from the ground of the play");
+                Show_Ground();
+                choosepos = char.Parse(Console.ReadLine());
+            }
+            else
+            {
+                Random rand = new Random();
+                string choose = rand.Next(1, 9).ToString();
+                choosepos = char.Parse(choose);
+            }
+            for (int RowGround = 0; RowGround < n; RowGround++)
+            {
+                for (int ColGround = 0; ColGround < n; ColGround++)
+                {
+                    if (ground[RowGround, ColGround] != NextPlayer && choosepos == ground[RowGround, ColGround])
+                    {
+                        ground[RowGround, ColGround] = CurrentPlayer;
+                        Right_Choice = true;
+                        break;
+                    }
+                }
+                if (Right_Choice == true)
+                    break;
+            }
+            if (!Right_Choice)
+                Choose(PlayerLoop, CurrentPlayer, NextPlayer);
+            if (PlayerLoop >= 4)
+            {
+                Console.Clear();
+                Show_Ground();
+                CheckedRow = CheckingRow(Playersign);
+                if (CheckedRow == true)
+                {
+                    Win_Message();
+                }
+                CheckedCol = CheckingCol(Playersign);
+                if (CheckedRow == false && CheckedCol == true)
+                {
+                    Win_Message();
+                }
+                CheckedMainDiameter = CheckingMainDiameter(Playersign);
+                if (CheckedRow == false && CheckedCol == false && CheckedMainDiameter == true)
+                {
+                    Win_Message();
+                }
+                CheckedMinorDiameter = CheckingMinorDiameter(Playersign);
+                if (CheckedRow == false && CheckedCol == false && CheckedMainDiameter == false && CheckedMinorDiameter == true)
+                {
+                    Win_Message();
+                }
+                if(PlayerLoop == 8 && CheckedRow == false && CheckedCol == false && CheckedMainDiameter == false && CheckedMinorDiameter == false )
+                {
+                    Console.WriteLine("-------------------------------------------");
+                    Console.WriteLine("The Result of this game is Equal");
+                    Console.WriteLine("to continue please click any key");
+                    Console.ReadKey();
+                }
+            }
+        }
+        public void Win_Message()
+        {
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine($"player '{Playersign}' wins !!!!");
+            Console.WriteLine("to continue please click any key");
+            Console.ReadKey();
+        }
+        public bool CheckingRow(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            while (RowGround <= 2)
+            {
+                if (ground[RowGround, ColGround] == Playersign && ground[RowGround, ColGround + 1] == Playersign && ground[RowGround, ColGround + 2] == Playersign)
+                {
+                    return true;
+                }
+                RowGround++;
+            }
+            return false;
+        }
+        public bool CheckingCol(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            while (ColGround <= 2)
+            {
+                if (ground[RowGround, ColGround] == Playersign && ground[RowGround + 1, ColGround] == Playersign && ground[RowGround + 2, ColGround] == Playersign)
+                {
+                    return true;
+                }
+                ColGround++;
+            }
+            return false;
+        }
+        public bool CheckingMainDiameter(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            if (ground[RowGround, ColGround] == Playersign && ground[RowGround + 1, ColGround + 1] == Playersign && ground[RowGround + 2, ColGround + 2] == Playersign)
+            {
+                return true;
+            }
+            return false;   
+        }
+        public bool CheckingMinorDiameter(char Playersign)
+        {
+            int RowGround = 0, ColGround = 0;
+            if (ground[RowGround, ColGround + 2] == Playersign && ground[RowGround + 1, ColGround + 1] == Playersign && ground[RowGround + 2, ColGround] == Playersign)
+                return true;
+            return false;   
         }
     }
 }
-   
+
+
 
